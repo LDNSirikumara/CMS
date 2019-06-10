@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Companies
+                <small>Control panel</small>
+            </h1>
+        </section>
+
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Companies</h3>
+                            <a href="{% url 'create_company' %}" class=" glyphicon glyphicon-pencil"
+                                style="float: right">Add</a>
+                        </div>
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Logo</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Website</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                                {% for com in company_list %}
+                                <tbody>
+                                    <tr>
+                                        <td><img src="{{ com.logo_url|default_if_none:'#' }}" alt="Logo" height="30">
+                                        </td>
+                                        <td>{{ com.name }}</td>
+                                        <td>{{ com.email }}</td>
+                                        <td> {{ com.website }}</td>
+                                        <td>&nbsp;&nbsp;&nbsp;<a href="{% url 'update_company' id=com.id %}"
+                                                class="glyphicon glyphicon-edit">Edit</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
+                                                href="{% url 'delete_company' id=com.id %}"
+                                                class="glyphicon glyphicon-trash">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                                <tfoot>
+                                    <tr>
+                                        <th>Logo</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Website</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            {% if company_list.has_previous %}
+                            <a href="?{{ page_request_varC }}={{ company_list.previous_page_number }}">&laquo;</a>
+                            {% endif %}
+                            {% if company_list.has_previous %}
+                            <a
+                                href="?{{ page_request_varC }}={{ company_list.previous_page_number }}">{{company_list.previous_page_number}}</a>
+                            {% endif %}
+                            <a class="active" href="#">{{company_list.number}}</a>
+                            {% if company_list.has_next %}
+                            <a
+                                href="?{{ page_request_varC }}={{ company_list.next_page_number }}">{{company_list.next_page_number}}</a>
+                            {% endif %}
+
+                            {% if company_list.has_next %}
+                            <a href="?{{ page_request_varC }}={{ company_list.next_page_number }}">&raquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Employees
+                <small>Control panel</small>
+            </h1>
+
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Employees</h3>
+                            <a href="{% url 'create_employee' %}" class=" glyphicon glyphicon-pencil"
+                                style="float: right">Add</a>
+                        </div>
+                        <div class="box-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Company</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                                {% for emp in employee_list %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{emp.f_name}}</td>
+                                        <td>{{emp.l_name}}</td>
+                                        <td>{{emp.company}}</td>
+                                        <td>{{emp.email}}</td>
+                                        <td>{{emp.phone}}</td>
+                                        <td>&nbsp;&nbsp;&nbsp;<a href="{% url 'update_employee' id=emp.id %}"
+                                                class="glyphicon glyphicon-edit">Edit</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
+                                                href="{% url 'delete_employee' id=emp.id %}"
+                                                class="glyphicon glyphicon-trash">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                                <tfoot>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Company</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Edit/Delete</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            {% if employee_list.has_previous %}
+                            <a href="?{{ page_request_varE }}={{ employee_list.previous_page_number }}">&laquo;</a>
+                            {% endif %}
+                            {% if employee_list.has_previous %}
+                            <a
+                                href="?{{ page_request_varE }}={{ employee_list.previous_page_number }}">{{employee_list.previous_page_number}}</a>
+                            {% endif %}
+                            <a class="active" href="#">{{employee_list.number}}</a>
+                            {% if employee_list.has_next %}
+                            <a
+                                href="?{{ page_request_varE }}={{ employee_list.next_page_number }}">{{employee_list.next_page_number}}</a>
+                            {% endif %}
+
+                            {% if employee_list.has_next %}
+                            <a href="?{{ page_request_varE }}={{ employee_list.next_page_number }}">&raquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock content %}

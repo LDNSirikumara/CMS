@@ -1,0 +1,25 @@
+<header class="main-header">
+    <a href="#" class="logo">
+        <span class="logo-lg"><b>CMS</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li><a href="/"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
+            <li><a href="/companies"><i class="fa fa-book"></i> <span>Companies</span></a></li>
+            <li><a href="/employees"><i class="fa fa-book"></i> <span>Employees</span></a></li>
+        </ul>
+    </section>
+</aside>
